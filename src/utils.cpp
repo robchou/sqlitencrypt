@@ -17,19 +17,9 @@
 
 #include <string>
 
-#include "utils.h"
+#include "sqlitencrypt/utils.h"
 
-#ifdef __ANDROID__
-
-template<class T> const std::string to_string(const T& value) {
-    std::ostringstream oss;
-    oss << value;
-    return oss.str();
-}
-
-#endif
-
-const string to_sql_text(const string& value) {
+const std::string to_sql_text(const std::string& value) {
     return "'" + value + "'";
 }
 

@@ -15,9 +15,12 @@
  * limitations under the License.
  */
 
-#include "sqlite_table.h"
-#include "log.h"
+#include "sqlitencrypt/sqlite_table.h"
+#include "sqlitencrypt/log.h"
 
+using std::string;
+using std::vector;
+using std::shared_ptr;
 
 SQLiteTable::SQLiteTable(): table_name_(""), records_pos_(0) { }
 

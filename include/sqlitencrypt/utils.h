@@ -20,18 +20,6 @@
 
 #include <string>
 
-using std::string;
-
-#ifdef __ANDROID__
-
-#include <sstream>
-
-template<class T> const string to_string(const T& value);
-
-#endif
-
-using std::to_string;
-
-const string to_sql_text(const string& value);
+const std::string to_sql_text(const std::string& value);
 
 #endif  // _UTILS_H

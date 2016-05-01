@@ -25,45 +25,42 @@
 
 #include "sqlite_record.h"
 
-using std::vector;
-using std::shared_ptr;
-
 class SQLiteTable {
     public:
         SQLiteTable();
 
         ~SQLiteTable();
 
-        const string& table_name() const;
+        const std::string& table_name() const;
 
         /**
          * @param table_name
          */
-        void set_table_name(const string& table_name);
+        void set_table_name(const std::string& table_name);
 
         /**
          * @param column_name
-         * @param flag including data type and constraint as string
+         * @param flag including data type and constraint as std::string
          */
-        void AddColumn(const string& column_name, const string& flag);
+        void AddColumn(const std::string& column_name, const std::string& flag);
 
-        const string ColumnsAsSQLCreateString() const;
+        const std::string ColumnsAsSQLCreateString() const;
 
-        const string RecordsAsSQLQueryString();
+        const std::string RecordsAsSQLQueryString();
 
-        void AddRecord(shared_ptr<SQLiteRecord> record);
+        void AddRecord(std::shared_ptr<SQLiteRecord> record);
 
-        const shared_ptr<SQLiteRecord> GetNextRecord();
+        const std::shared_ptr<SQLiteRecord> GetNextRecord();
 
         void ClearRecords();
 
         size_t GetRecordCount() const;
 
     private:
-        string table_name_;
+        std::string table_name_;
         size_t records_pos_;
-        vector<string> columns_;
-        vector<shared_ptr<SQLiteRecord>> records_;
+        std::vector<std::string> columns_;
+        std::vector<std::shared_ptr<SQLiteRecord>> records_;
 };
 
 #endif  // _SQLITETABLE_H

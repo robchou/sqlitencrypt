@@ -15,11 +15,14 @@
  * limitations under the License.
  */
 
-#include <map>
 #include <string>
+#include <map>
 
-#include "sqlite_record.h"
-#include "log.h"
+#include "sqlitencrypt/sqlite_record.h"
+#include "sqlitencrypt/log.h"
+
+using std::string;
+using std::map;
 
 SQLiteRecord::SQLiteRecord() { }
 

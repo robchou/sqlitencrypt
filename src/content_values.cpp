@@ -18,10 +18,13 @@
 #include <string>
 #include <map>
 
-#include "content_values.h"
-#include "utils.h"
+#include "sqlitencrypt/content_values.h"
+#include "sqlitencrypt/utils.h"
 
+using std::string;
+using std::map;
 using std::make_pair;
+using std::to_string;
 
 ContentValues::ContentValues() { }
 

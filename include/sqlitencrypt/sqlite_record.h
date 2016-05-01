@@ -22,9 +22,6 @@
 #include <map>
 #include <cstdint>
 
-using std::string;
-using std::map;
-
 class SQLiteRecord {
     // TODO(robin): process NULL value
     public:
@@ -32,41 +29,41 @@ class SQLiteRecord {
 
         ~SQLiteRecord();
 
-        void SetColumnValue(const string& key, const string& value);
+        void SetColumnValue(const std::string& key, const std::string& value);
 
         /**
          * @param column_name
          */
-        bool GetBool(const string& column_name);
+        bool GetBool(const std::string& column_name);
 
         /**
          * @param column_name
          */
-        int32_t GetInt32(const string& column_name);
+        int32_t GetInt32(const std::string& column_name);
 
         /**
          * @param column_name
          */
-        int64_t GetInt64(const string& column_name);
+        int64_t GetInt64(const std::string& column_name);
 
         /**
          * @param column_name
          */
-        double GetDouble(const string& column_name);
+        double GetDouble(const std::string& column_name);
 
         /**
          * @param column_name
          */
-        const string GetText(const string& column_name);
+        const std::string GetText(const std::string& column_name);
 
-        const string RecordAsSQLQueryResultString() const;
+        const std::string RecordAsSQLQueryResultString() const;
 
-        const string ColumnNamesAsSQLQueryResultString() const;
+        const std::string ColumnNamesAsSQLQueryResultString() const;
 
         size_t GetColumnsCount() const;
 
     private:
-        map<string, string> fields_;
+        std::map<std::string, std::string> fields_;
 };
 
 #endif  // _SQLITERECORD_H

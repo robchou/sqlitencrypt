@@ -21,9 +21,6 @@
 #include <string>
 #include <map>
 
-using std::string;
-using std::map;
-
 /**
  * @brief This class is a container of values in a row
  */
@@ -37,46 +34,46 @@ class ContentValues {
          * @param key
          * @param value
          */
-        void PutBool(const string& key, const bool& value);
+        void PutBool(const std::string& key, const bool& value);
 
         /**
          * @param key
          * @param value
          */
-        void PutInt32(const string& key, const int32_t& value);
+        void PutInt32(const std::string& key, const int32_t& value);
 
         /**
          * @param key
          * @param value
          */
-        void PutInt64(const string& key, const int64_t& value);
+        void PutInt64(const std::string& key, const int64_t& value);
 
         /**
          * @param key
          * @param value
          */
-        void PutDouble(const string& key, const double& value);
+        void PutDouble(const std::string& key, const double& value);
 
         /**
          * @param key
          * @param value
          */
-        void PutText(const string& key, const string& value);
+        void PutText(const std::string& key, const std::string& value);
 
         /**
          * @param key
          */
-        void PutNULL(const string& key);
+        void PutNULL(const std::string& key);
 
         void ClearValues();
 
         size_t GetValuesCount() const;
 
-        const string ValuesAsSQLInsertString() const;
+        const std::string ValuesAsSQLInsertString() const;
 
-        const string ValuesAsSQLUpdateString() const;
+        const std::string ValuesAsSQLUpdateString() const;
     private:
-        map< string, string> values_;
+        std::map< std::string, std::string> values_;
 };
 
 #endif  // _CONTENTVALUES_H

@@ -20,8 +20,12 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include "sqlite_db.h"
-#include "log.h"
+#include "sqlitencrypt/sqlite_db.h"
+#include "sqlitencrypt/log.h"
+
+using std::string;
+using std::vector;
+using std::shared_ptr;
 
 SQLiteDB::SQLiteDB() : sqlite3_handler_(nullptr) { }
 
@@ -50,7 +54,7 @@ int SQLiteDB::Open(const string& db_path, const string& db_name, const string& p
 
 #ifdef __ANDROID__
     // Default sqlite3_temp_directory is unaccessable in android
-    sqlite3_temp_directory = db_path.c_str();
+    sqlite3_temp_directory = const_cast<char*>(db_path.c_str());
 #endif
 
     string db_file = db_path + db_name + ".db";

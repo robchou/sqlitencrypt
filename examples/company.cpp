@@ -1,7 +1,9 @@
 #include <cstdlib>
-#include "sqlite_db.h"
-#include "content_values.h"
-#include "log.h"
+#include "sqlitencrypt/sqlite_db.h"
+#include "sqlitencrypt/content_values.h"
+#include "sqlitencrypt/log.h"
+
+using std::string;
 
 int main(int argc, char *argv[])
 {

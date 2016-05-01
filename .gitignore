@@ -44,3 +44,5 @@ crashlytics-build.properties
 fabric.properties
 
 /build
+/android/libs
+/android/obj
