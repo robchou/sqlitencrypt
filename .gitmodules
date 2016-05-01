@@ -1,0 +1,3 @@
+[submodule "wxsqlite3"]
+	path = wxsqlite3
+	url = git@github.com:robchou/wxsqlite3.git
