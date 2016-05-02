@@ -1,9 +1,24 @@
+# Copyright (C) 2016, Robin Chou (robin.m.chou@gmail.com)
+# All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 cmake_minimum_required(VERSION 3.5)
-project(company)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -g")
+project(unix_example)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 add_definitions(-DSQLITE_HAS_CODEC)
-set(company_files
-    ${sqlitencypt_source_dir}/examples/company.cpp)
+set(unix_example_files
+    ${sqlitencypt_source_dir}/examples/unix_example.cpp)
 include_directories(${sqlitencypt_source_dir}/src)
-add_executable(company ${company_files})
-target_link_libraries(company sqlitencypt)
+add_executable(unix_example ${unix_example_files})
+target_link_libraries(unix_example sqlitencypt)

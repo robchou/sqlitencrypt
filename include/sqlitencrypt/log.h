@@ -23,7 +23,7 @@
 #include <android/log.h>
 
 #ifndef MY_LOG_TAG
-#define MY_LOG_TAG "SQLite"
+#define MY_LOG_TAG "SQLitencrypt"
 #endif
 
 #ifndef MY_LOG_LEVEL
@@ -35,7 +35,7 @@
 #if (defined __unix__) || (defined __gnu_linux__ ) || (defined __APPLE__) || (defined __FreeBSD__) || (defined __WINDOWS__)
 #include <stdio.h>
 #ifndef MY_LOG_TAG
-#define MY_LOG_TAG "SQLite"
+#define MY_LOG_TAG "SQLitencrypt"
 #endif
 
 #ifndef UNIX_LOG_VERBOSE 
