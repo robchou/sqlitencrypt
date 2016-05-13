@@ -52,7 +52,7 @@ TODO
 ### Unix
 ```bash
 cd build
-./examples/company
+./examples/unix_example
 ```
 
 ### Android
