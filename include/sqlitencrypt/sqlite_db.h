@@ -105,6 +105,8 @@ public:
     static int SelectCallback(void *data, int num_fields,
             char **fields, char **column_names);
 
+    sqlite3* sqlite3_handler();
+
 private:
     sqlite3* sqlite3_handler_;
 };

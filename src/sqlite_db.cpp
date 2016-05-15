@@ -1,13 +1,13 @@
-/* 
+/*
  * Copyright (C) 2016, Robin Chou (robin.m.chou@gmail.com)
  * All rights reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -75,7 +75,7 @@ int SQLiteDB::Open(const string& db_path, const string& db_name, const string& p
  */
 int SQLiteDB::Create(const SQLiteTable& sqlite_table) {
     string sql_statement = "CREATE TABLE IF NOT EXISTS " + sqlite_table.table_name()
-        + "(" + sqlite_table.ColumnsAsSQLCreateString() + ")";
+                           + "(" + sqlite_table.ColumnsAsSQLCreateString() + ")";
     return ExecSQL(sql_statement);
 }
 
@@ -97,7 +97,7 @@ int SQLiteDB::Create(const string& table_name, const string& columns) {
  * @param result_table
  */
 int SQLiteDB::Query(const string& table_name, const string& column_name, const string& where_condition,
-        SQLiteTable* result_table) {
+                    SQLiteTable* result_table) {
     if (result_table) {
         string sql_statement = "SELECT " + column_name + " FROM " + table_name + " " + where_condition;
         return ExecSQL(sql_statement, result_table);
@@ -114,7 +114,7 @@ int SQLiteDB::Query(const string& table_name, const string& column_name, const s
  * @param result_table
  */
 int SQLiteDB::Query(const string& table_name, const vector<string>& column_names, const string& where_condition,
-        SQLiteTable* result_table) {
+                    SQLiteTable* result_table) {
     if (result_table) {
         string sql_statement;
         string column_names_as_sql;
@@ -218,38 +218,70 @@ int SQLiteDB::RollBack() {
 
 const string SQLiteDB::SQLiteCodeAsString(int error_code) {
     switch (error_code) {
-        case SQLITE_OK              : return "SQLITE_OK";
-        case SQLITE_ERROR           : return "SQLITE_ERROR";
-        case SQLITE_INTERNAL        : return "SQLITE_INTERNAL";
-        case SQLITE_PERM            : return "SQLITE_PERM";
-        case SQLITE_ABORT           : return "SQLITE_ABORT";
-        case SQLITE_BUSY            : return "SQLITE_BUSY";
-        case SQLITE_LOCKED          : return "SQLITE_LOCKED";
-        case SQLITE_NOMEM           : return "SQLITE_NOMEM";
-        case SQLITE_READONLY        : return "SQLITE_READONLY";
-        case SQLITE_INTERRUPT       : return "SQLITE_INTERRUPT";
-        case SQLITE_IOERR           : return "SQLITE_IOERR";
-        case SQLITE_CORRUPT         : return "SQLITE_CORRUPT";
-        case SQLITE_NOTFOUND        : return "SQLITE_NOTFOUND";
-        case SQLITE_FULL            : return "SQLITE_FULL";
-        case SQLITE_CANTOPEN        : return "SQLITE_CANTOPEN";
-        case SQLITE_PROTOCOL        : return "SQLITE_PROTOCOL";
-        case SQLITE_EMPTY           : return "SQLITE_EMPTY";
-        case SQLITE_SCHEMA          : return "SQLITE_SCHEMA";
-        case SQLITE_TOOBIG          : return "SQLITE_TOOBIG";
-        case SQLITE_CONSTRAINT      : return "SQLITE_CONSTRAINT";
-        case SQLITE_MISMATCH        : return "SQLITE_MISMATCH";
-        case SQLITE_MISUSE          : return "SQLITE_MISUSE";
-        case SQLITE_NOLFS           : return "SQLITE_NOLFS";
-        case SQLITE_AUTH            : return "SQLITE_AUTH";
-        case SQLITE_FORMAT          : return "SQLITE_FORMAT";
-        case SQLITE_RANGE           : return "SQLITE_RANGE";
-        case SQLITE_NOTADB          : return "SQLITE_NOTADB";
-        case SQLITE_NOTICE          : return "SQLITE_NOTICE";
-        case SQLITE_WARNING         : return "SQLITE_WARNING";
-        case SQLITE_ROW             : return "SQLITE_ROW";
-        case SQLITE_DONE            : return "SQLITE_DONE";
-        default                     : return "UNKNOWN_ERROR";
+    case SQLITE_OK              :
+        return "SQLITE_OK";
+    case SQLITE_ERROR           :
+        return "SQLITE_ERROR";
+    case SQLITE_INTERNAL        :
+        return "SQLITE_INTERNAL";
+    case SQLITE_PERM            :
+        return "SQLITE_PERM";
+    case SQLITE_ABORT           :
+        return "SQLITE_ABORT";
+    case SQLITE_BUSY            :
+        return "SQLITE_BUSY";
+    case SQLITE_LOCKED          :
+        return "SQLITE_LOCKED";
+    case SQLITE_NOMEM           :
+        return "SQLITE_NOMEM";
+    case SQLITE_READONLY        :
+        return "SQLITE_READONLY";
+    case SQLITE_INTERRUPT       :
+        return "SQLITE_INTERRUPT";
+    case SQLITE_IOERR           :
+        return "SQLITE_IOERR";
+    case SQLITE_CORRUPT         :
+        return "SQLITE_CORRUPT";
+    case SQLITE_NOTFOUND        :
+        return "SQLITE_NOTFOUND";
+    case SQLITE_FULL            :
+        return "SQLITE_FULL";
+    case SQLITE_CANTOPEN        :
+        return "SQLITE_CANTOPEN";
+    case SQLITE_PROTOCOL        :
+        return "SQLITE_PROTOCOL";
+    case SQLITE_EMPTY           :
+        return "SQLITE_EMPTY";
+    case SQLITE_SCHEMA          :
+        return "SQLITE_SCHEMA";
+    case SQLITE_TOOBIG          :
+        return "SQLITE_TOOBIG";
+    case SQLITE_CONSTRAINT      :
+        return "SQLITE_CONSTRAINT";
+    case SQLITE_MISMATCH        :
+        return "SQLITE_MISMATCH";
+    case SQLITE_MISUSE          :
+        return "SQLITE_MISUSE";
+    case SQLITE_NOLFS           :
+        return "SQLITE_NOLFS";
+    case SQLITE_AUTH            :
+        return "SQLITE_AUTH";
+    case SQLITE_FORMAT          :
+        return "SQLITE_FORMAT";
+    case SQLITE_RANGE           :
+        return "SQLITE_RANGE";
+    case SQLITE_NOTADB          :
+        return "SQLITE_NOTADB";
+    case SQLITE_NOTICE          :
+        return "SQLITE_NOTICE";
+    case SQLITE_WARNING         :
+        return "SQLITE_WARNING";
+    case SQLITE_ROW             :
+        return "SQLITE_ROW";
+    case SQLITE_DONE            :
+        return "SQLITE_DONE";
+    default                     :
+        return "UNKNOWN_ERROR";
     }
 }
 
@@ -270,5 +302,9 @@ int SQLiteDB::SelectCallback(void *data, int num_fields, char **fields, char **c
     res->AddRecord(record);
 
     return 0;
+}
+
+sqlite3* SQLiteDB::sqlite3_handler() {
+    return sqlite3_handler_;
 }
 
