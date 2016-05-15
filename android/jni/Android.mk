@@ -28,7 +28,7 @@ LOCAL_SRC_FILES := src/content_values.cpp                       \
                    wxsqlite3/sqlite3/secure/src/sqlite3secure.c \
 
 LOCAL_MODULE := sqlitencrypt
-OCAL_LDLIBS := -lpthread -ldl -llog
+LOCAL_LDLIBS := -ldl -llog
 LOCAL_CFLAGS := -DSQLITE_HAS_CODEC
 
 include $(BUILD_SHARED_LIBRARY)
