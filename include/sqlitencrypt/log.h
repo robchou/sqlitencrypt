@@ -36,7 +36,7 @@ extern "C" {
  * before using the other macros to change the tag.
  */
 #ifndef LOG_TAG
-#define LOG_TAG "Robin"
+#define LOG_TAG "LOG"
 #endif /* ifndef LOG_TAG */
 
 #ifndef LOGV
@@ -139,6 +139,16 @@ extern "C" {
 #define IF_LOGE() IF_LOG(LOG_ERROR, LOG_TAG)
 #endif /* ifndef IF_LOGE */
 
+#ifdef __ANDROID__
+#ifndef LOG_ALWAYS_FATAL_IF
+#include <android/log.h>
+#define LOG_ALWAYS_FATAL_IF(cond, ...) \
+    ( (CONDITION(cond))                \
+      ? (void)__android_log_print(ANDROID_LOG_FATAL, LOG_TAG, ## __VA_ARGS__)      \
+      : (void)0 )
+#endif /* ifndef LOG_ALWAYS_FATAL_IF */
+#endif /* __ANDROID__ */
+
 #if (defined __unix__) || (defined __gnu_linux__ ) || (defined __APPLE__) || (defined __FreeBSD__) || (defined __WINDOWS__)
 #ifndef LOG_ALWAYS_FATAL_IF
 #include <stdio.h>
@@ -149,16 +159,6 @@ extern "C" {
       : (void)0 )
 #endif /* ifndef LOG_ALWAYS_FATAL_IF */
 #endif /* *nix and windows */
-
-#ifdef __ANDROID__
-#ifndef LOG_ALWAYS_FATAL_IF
-#include <android/log.h>
-#define LOG_ALWAYS_FATAL_IF(cond, ...) \
-    ( (CONDITION(cond))                \
-      ? (void)__android_log_print(ANDROID_LOG_FATAL, LOG_TAG, ## __VA_ARGS__)      \
-      : (void)0 )
-#endif /* ifndef LOG_ALWAYS_FATAL_IF */
-#endif /* __ANDROID__ */
 
 #if LOG_NDEBUG
 
@@ -201,18 +201,6 @@ extern "C" {
     LOG_PRI(ANDROID_##priority, tag, __VA_ARGS__)
 #endif /* ifndef LOG */
 
-#if (defined __unix__) || (defined __gnu_linux__ ) || (defined __APPLE__) || (defined __FreeBSD__) || (defined __WINDOWS__)
-#ifndef LOG_PRI
-#define LOG_PRI(priority, tag, ...) \
-    printf(__VA_ARGS__)
-#endif /* ifndef LOG_PRI */
-
-#ifndef IF_LOG
-#define IF_LOG(priority, tag) \
-    printf(tag)
-#endif /* ifndef IF_LOG */
-#endif /* if *nix and windows */
-
 #ifdef __ANDROID__
 #ifndef LOG_PRI
 #define LOG_PRI(priority, tag, ...) \
@@ -224,6 +212,18 @@ extern "C" {
     if (__android_log_assert(ANDROID_##priority, tag))
 #endif /* ifndef IF_LOG */
 #endif /* __ANDROID__ */
+
+#if (defined __unix__) || (defined __gnu_linux__ ) || (defined __APPLE__) || (defined __FreeBSD__) || (defined __WINDOWS__)
+#ifndef LOG_PRI
+#define LOG_PRI(priority, tag, ...) \
+    printf(__VA_ARGS__)
+#endif /* ifndef LOG_PRI */
+
+#ifndef IF_LOG
+#define IF_LOG(priority, tag) \
+    printf(tag)
+#endif /* ifndef IF_LOG */
+#endif /* if *nix and windows */
 
 #ifdef __cplusplus
 }
