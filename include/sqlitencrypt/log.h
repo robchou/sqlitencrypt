@@ -36,7 +36,7 @@ extern "C" {
  * before using the other macros to change the tag.
  */
 #ifndef LOG_TAG
-#define LOG_TAG "LOG"
+#define LOG_TAG "LOG_TAG"
 #endif /* ifndef LOG_TAG */
 
 #ifndef LOGV
@@ -72,7 +72,7 @@ extern "C" {
 #endif /* ifndef LOGD_IF */
 
 #ifndef LOGI
-#define LOGI(...) ((void)LOG(LOG_DEBUG, LOG_TAG, __VA_ARGS__))
+#define LOGI(...) ((void)LOG(LOG_INFO, LOG_TAG, __VA_ARGS__))
 #endif /* ifndef LOGI */
 
 #ifndef LOGI_IF
@@ -86,23 +86,12 @@ extern "C" {
 #define LOGW(...) ((void)LOG(LOG_WARN, LOG_TAG, __VA_ARGS__))
 #endif /* ifndef LOGW */
 
-#ifndef LOGI_IF
-#define LOGI_IF(cond, ...)                             \
+#ifndef LOGW_IF
+#define LOGW_IF(cond, ...)                             \
     ( (CONDITION(cond))                                \
       ? ((void)(LOG(LOG_WARN, LOG_TAG, __VA_ARGS__))) \
       : ((void)0) )
 #endif /* ifndef LOGW_IF */
-
-#ifndef LOGE
-#define LOGE(...) ((void)LOG(LOG_ERROR, LOG_TAG, __VA_ARGS__))
-#endif /* ifndef LOGE */
-
-#ifndef LOGE_IF
-#define LOGE_IF(cond, ...)                             \
-    ( (CONDITION(cond))                                \
-      ? ((void)(LOG(LOG_ERROR, LOG_TAG, __VA_ARGS__))) \
-      : ((void)0) )
-#endif /* ifndef LOGE_IF */
 
 #ifndef LOGE
 #define LOGE(...) ((void)LOG(LOG_ERROR, LOG_TAG, __VA_ARGS__))
